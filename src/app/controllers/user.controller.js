@@ -8,10 +8,10 @@ class UserController {
 
       return res.json(user)
     }
-    catch(error){
+    catch (error) {
       return res.status(400).json({
         message: "Não foi possível criar um novo usuário",
-        error,
+        ...error,
       })
     }
   }

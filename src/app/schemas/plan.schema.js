@@ -3,6 +3,10 @@ const mongoose = require("mongoose")
 const PlanSchema = mongoose.Schema({
   url: String,
   status: String,
+  gateway_id: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -34,12 +38,12 @@ const PlanSchema = mongoose.Schema({
   statement_descriptor: String,
   currency: {
     type: String,
-    enum: ['BRL','ARS','BOB','CLP', 'COP','MXN','PYG','USD','UYU','EUR'],
+    enum: ['BRL', 'ARS', 'BOB', 'CLP', 'COP', 'MXN', 'PYG', 'USD', 'UYU', 'EUR'],
     default: 'BRL'
   },
   interval: {
     type: String,
-    enum: ['day','week','month','year'],
+    enum: ['day', 'week', 'month', 'year'],
     required: true
   },
   interval_count: {
@@ -50,10 +54,11 @@ const PlanSchema = mongoose.Schema({
     type: Number,
     default: 0
   },
-  items:Array,
+  items: Array,
   metadata: Object
 }, {
-  timestamp: true
-})
+    timestamp: true
+  }
+)
 
 module.exports = mongoose.model('Plan', PlanSchema)
